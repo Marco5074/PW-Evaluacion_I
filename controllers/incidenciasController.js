@@ -18,7 +18,7 @@ function registrarIncidencia(req, res) {
 
     //validacion 2.la prioridad solo puede ser esas 3 si es diferente da error
     //y .tolowercase() evita el problema si es en mayuscula o minuscula.
-    const prioridadValida = ['alta', 'nedia', 'baja'].includes(prioridad.toLowerCase());
+    const prioridadValida = ['alta', 'media', 'baja'].includes(prioridad.toLowerCase());
 
     if (!prioridadValida) {
         return res.status(400).json({ mensaje: 'la prioridad debe ser alta, media o baja' });
@@ -35,7 +35,14 @@ function registrarIncidencia(req, res) {
     res.status(201).json({ mensaje: 'incidencia registrada correctamente' });
 }
 
+// devuelve todas las incidencias guardadas hasta el momento, en formato JSON
+function listarIncidencias(req,res){
+    res.json(incidencias);
+}
+
+//listar incidencias
 //se exporta la funcion para routes/incidencias.js la pueda usar
 module.exports = {
-    registrarIncidencia
+    registrarIncidencia,
+    listarIncidencias
 };
