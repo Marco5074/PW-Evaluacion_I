@@ -57,10 +57,52 @@ function buscarIncidencia(req, res) {
     res.json(incidencia);
 }
 
+// cambia el estado de una incidencia
+function cambiarEstado(req, res) {
+    const id = Number(req.params.id);
+    const { estado } = req.body;
+
+    // busca la incidencia por su id
+    const incidencia = incidencias.find(incidencia => incidencia.id === id);
+
+    // verifica si la incidencia existe
+    if (!incidencia) {
+        return res.status(404).json({
+            mensaje: 'incidencia no encontrada'
+        });
+    }
+
+    // valida el estado utilizando switch
+    switch (estado) {
+        case 'Pendiente':
+            incidencia.estado = 'Pendiente';
+            break;
+
+        case 'En proceso':
+            incidencia.estado = 'En proceso';
+            break;
+
+        case 'Resuelta':
+            incidencia.estado = 'Resuelta';
+            break;
+
+        default:
+            return res.status(400).json({
+                mensaje: 'el estado debe ser Pendiente, En proceso o Resuelta'
+            });
+    }
+
+    // devuelve mensaje de confirmacion
+    res.json({
+        mensaje: 'estado actualizado correctamente',
+        incidencia
+    });
+}
 //listar incidencias
 //se exporta la funcion para routes/incidencias.js la pueda usar
 module.exports = {
     registrarIncidencia,
     listarIncidencias,
-    buscarIncidencia
+    buscarIncidencia,
+    cambiarEstado
 };

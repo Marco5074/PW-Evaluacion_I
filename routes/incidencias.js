@@ -13,5 +13,9 @@ router.get('/incidencias',incidenciasController.listarIncidencias);
 // se ejecuta la funcion buscarIncidencia del controlador
 router.get('/incidencias/:id', incidenciasController.buscarIncidencia);
 
+// cuando llegue una peticion PATCH a /incidencias/:id/estado
+// se ejecuta la funcion cambiarEstado del controlador
+router.patch('/incidencias/:id/estado', incidenciasController.cambiarEstado);
+
 //se hace lo mismo se exporta para para que app.js lo pueda usar
 module.exports = router;
