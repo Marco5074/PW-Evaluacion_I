@@ -40,9 +40,27 @@ function listarIncidencias(req,res){
     res.json(incidencias);
 }
 
+// busca una incidencia por su id
+function buscarIncidencia(req, res) {
+    const id = Number(req.params.id);
+
+    // busca dentro del arreglo la incidencia que tenga el id solicitado
+    const incidencia = incidencias.find(incidencia => incidencia.id === id);
+
+    // si no encuentra la incidencia, devuelve error 404
+    if (!incidencia) {
+        return res.status(404).json({
+            mensaje: 'incidencia no encontrada'
+        });
+    }
+    // si encuentra la incidencia, devuelve la incidencia 
+    res.json(incidencia);
+}
+
 //listar incidencias
 //se exporta la funcion para routes/incidencias.js la pueda usar
 module.exports = {
     registrarIncidencia,
-    listarIncidencias
+    listarIncidencias,
+    buscarIncidencia
 };
