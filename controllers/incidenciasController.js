@@ -110,7 +110,8 @@ function eliminarIncidencia(req, res) {
 
 // estadisticas de las incidencias guardadas
 function obtenerEstadisticas(req, res) {
-    const normalizarEstado = (estado) => (estado || '').toLowerCase().replace(/\s+/g, '');
+
+    const {normalizarEstado}=require('../herpers/herpers');
 
     res.json({
         totalIncidencias: incidencias.length,
