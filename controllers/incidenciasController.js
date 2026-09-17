@@ -57,6 +57,8 @@ function buscarIncidencia(req, res) {
     res.json(incidencia);
 }
 
+// prueba 
+
 //listar incidencias
 //se exporta la funcion para routes/incidencias.js la pueda usar
 module.exports = {

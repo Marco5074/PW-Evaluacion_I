@@ -12,6 +12,6 @@ router.get('/incidencias',incidenciasController.listarIncidencias);
 // cuando llegue una peticion GET a /incidencias/:id
 // se ejecuta la funcion buscarIncidencia del controlador
 router.get('/incidencias/:id', incidenciasController.buscarIncidencia);
-
+//prueba
 //se hace lo mismo se exporta para para que app.js lo pueda usar
 module.exports = router;
