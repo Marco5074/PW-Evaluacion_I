@@ -17,8 +17,12 @@ router.get('/incidencias/:id', incidenciasController.buscarIncidencia);
 // se ejecuta la funcion cambiarEstado del controlador
 router.patch('/incidencias/:id/estado', incidenciasController.cambiarEstado);
 
-// eliminar incidencia --
+// eliminar incidencia
 router.delete('/incidencias/:id', incidenciasController.eliminarIncidencia);
+
+// cuando llegue una peticion GET a /estadisticas
+// se ejecuta la funcion obtenerEstadisticas del controlador
+router.get('/estadisticas', incidenciasController.obtenerEstadisticas);
 
 //se hace lo mismo se exporta para para que app.js lo pueda usar
 module.exports = router;
