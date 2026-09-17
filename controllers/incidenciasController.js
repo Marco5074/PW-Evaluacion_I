@@ -23,7 +23,7 @@ function registrarIncidencia(req, res) {
     if (!prioridadValida) {
         return res.status(400).json({ mensaje: 'la prioridad debe ser alta, media o baja' });
     }
-    
+
     //si pasa las dos validaciones se arma el objeto completo de la incidencia
     const nuevaIncidencia = { id: siguienteID, empleado, area, descripcion, prioridad, estado: 'Pendiente' }; //toda incidencia nueva inicia como pendiente
 
@@ -36,7 +36,7 @@ function registrarIncidencia(req, res) {
 }
 
 // devuelve todas las incidencias guardadas hasta el momento, en formato JSON
-function listarIncidencias(req,res){
+function listarIncidencias(req, res) {
     res.json(incidencias);
 }
 
@@ -104,7 +104,7 @@ function cambiarEstado(req, res) {
 function eliminarIncidencia(req, res) {
     const id = Number(req.params.id);
     const index = incidencias.findIndex(incidencia => incidencia.id === id);
-    if(index === -1) {
+    if (index === -1) {
         return res.status(404).json({ mensaje: 'incidencia no encontrada' });
     }
     incidencias.splice(index, 1);
@@ -124,12 +124,61 @@ function obtenerEstadisticas(req, res) {
     });
 }
 
+// Clasificar incidencias 
+function clasificarIncidencias(req, res) {
+
+    // Obtener id de la URL
+    const id = Number(req.params.id);
+
+// Buscar la incidencia por su id
+    const incidencia = incidencias.find(incidencia => incidencia.id === id);
+
+
+    //Valida que exista la incidencia
+    if (!incidencia) {
+        return res.status(404).json({
+            mensaje: "Incidencia no encontrada"
+        });
+
+    }
+
+    switch (incidencia.prioridad) 
+    {
+        case 'Alta':
+            incidencia.estado = 'Crítica'
+            break;
+
+
+        case 'Media':
+            incidencia.estado = 'Importante'
+            break;
+
+        case 'Baja':
+            incidencia.estado = 'Normal'
+            break;
+
+        default:
+            return res.status(400).json({
+                mensaje: 'La prioridad debe ser : Alta , Media , Baja'
+            });
+    }
+
+    //Enviar el resultado
+    res.status(200).json({
+        id: incidencia.id,
+        clasificacion: incidencia.estado
+    });
+};
+
+
+
 //se exporta la funcion para routes/incidencias.js la pueda usar
 module.exports = {
     registrarIncidencia,
     listarIncidencias,
     buscarIncidencia,
     cambiarEstado,
-    eliminarIncidencia, 
-    obtenerEstadisticas
+    eliminarIncidencia,
+    obtenerEstadisticas,
+    clasificarIncidencias
 };
