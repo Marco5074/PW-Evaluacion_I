@@ -104,5 +104,17 @@ module.exports = {
     registrarIncidencia,
     listarIncidencias,
     buscarIncidencia,
-    cambiarEstado
+    cambiarEstado,
+    eliminarIncidencia
 };
+//-
+//eliminar incidencia
+function eliminarIncidencia(req, res) {
+    const id = Number(req.params.id);
+    const index = incidencias.findIndex(incidencia => incidencia.id === id);
+    if(index === -1) {
+        return res.status(404).json({ mensaje: 'incidencia no encontrada' });
+    }
+    incidencias.splice(index, 1);
+    res.json({ mensaje: 'incidencia eliminada correctamente' });
+}

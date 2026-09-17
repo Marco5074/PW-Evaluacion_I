@@ -17,5 +17,8 @@ router.get('/incidencias/:id', incidenciasController.buscarIncidencia);
 // se ejecuta la funcion cambiarEstado del controlador
 router.patch('/incidencias/:id/estado', incidenciasController.cambiarEstado);
 
+// eliminar incidencia --
+router.delete('/incidencias/:id', incidenciasController.eliminarIncidencia);
+
 //se hace lo mismo se exporta para para que app.js lo pueda usar
 module.exports = router;
