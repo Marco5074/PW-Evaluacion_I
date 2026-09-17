@@ -24,5 +24,8 @@ router.delete('/incidencias/:id', incidenciasController.eliminarIncidencia);
 // se ejecuta la funcion obtenerEstadisticas del controlador
 router.get('/estadisticas', incidenciasController.obtenerEstadisticas);
 
+// Clasifica una incidencia según su prioridad, usando su ID
+router.get('/incidencias/:id/clasificacion', incidenciasController.clasificarIncidencias);
+
 //se hace lo mismo se exporta para para que app.js lo pueda usar
 module.exports = router;
