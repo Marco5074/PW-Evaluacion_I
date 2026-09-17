@@ -144,16 +144,16 @@ function clasificarIncidencias(req, res) {
 
     switch (incidencia.prioridad) 
     {
-        case 'alta':
+        case 'Alta':
             incidencia.estado = 'Crítica'
             break;
 
 
-        case 'media':
+        case 'Media':
             incidencia.estado = 'Importante'
             break;
 
-        case 'baja':
+        case 'Baja':
             incidencia.estado = 'Normal'
             break;
 
