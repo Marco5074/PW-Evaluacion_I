@@ -13,9 +13,9 @@ router.get('/incidencias',incidenciasController.listarIncidencias);
 // se ejecuta la funcion buscarIncidencia del controlador
 router.get('/incidencias/:id', incidenciasController.buscarIncidencia);
 
-// cuando llegue una peticion PATCH a /incidencias/:id/estado
+// cuando llegue una peticion PUT a /incidencias/:id/estado
 // se ejecuta la funcion cambiarEstado del controlador
-router.patch('/incidencias/:id/estado', incidenciasController.cambiarEstado);
+router.put('/incidencias/:id/estado', incidenciasController.cambiarEstado);
 
 // eliminar incidencia
 router.delete('/incidencias/:id', incidenciasController.eliminarIncidencia);
