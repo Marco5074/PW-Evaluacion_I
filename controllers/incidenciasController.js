@@ -9,18 +9,15 @@ function registrarIncidencia(req, res) {
 
     //validacion 1. todos los campos son obligatorios y no pueden venir vacios.
     //trim() quita los espacios en blanco, para que " " no cuente como dato valido
-    if (!empleado || empleado.trim() === '' ||
-        !area || area.trim() === '' ||
-        !descripcion || descripcion.trim() === '' ||
-        !prioridad || prioridad.trim() === '') {
+    if (campoVacio(empleado) ||
+        campoVacio(area)||
+        campoVacio(descripcion) ||
+        campoVacio(prioridad)) {
         return res.status(400).json({ mensaje: 'todos los campos son obligatorios' });
     }
 
-    //validacion 2.la prioridad solo puede ser esas 3 si es diferente da error
-    //y .tolowercase() evita el problema si es en mayuscula o minuscula.
-    const prioridadValida = ['alta', 'media', 'baja'].includes(prioridad.toLowerCase());
-
-    if (!prioridadValida) {
+    
+    if (!validarPrioridad(prioridad)) {
         return res.status(400).json({ mensaje: 'la prioridad debe ser alta, media o baja' });
     }
 
