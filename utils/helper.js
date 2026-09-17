@@ -17,3 +17,8 @@ function normalizarEstado(estado){
     return(estado || '').toLowerCase().replace(/\s+/g,'');
 }
 
+module.exports = {
+    validarPrioridad,
+    campoVacio,
+    normalizarEstado
+};
