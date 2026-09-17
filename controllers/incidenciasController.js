@@ -45,9 +45,10 @@ function buscarIncidencia(req, res) {
 
     // busca dentro del arreglo la incidencia que tenga el id solicitado
     const incidencia = incidencias.find(incidencia => incidencia.id === id);
+    const existe = Boolean(incidencia);
 
     // si no encuentra la incidencia, devuelve error 404
-    if (!incidencia) {
+    if (!existe) {
         return res.status(404).json({
             mensaje: 'incidencia no encontrada'
         });
