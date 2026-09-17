@@ -12,3 +12,13 @@ function campoVacio(valor)
 }
 //prueba
 
+//funcion de normalizar estado
+function normalizarEstado(estado){
+    return(estado || '').toLowerCase().replace(/\s+/g,'');
+}
+
+module.exports = {
+    validarPrioridad,
+    campoVacio,
+    normalizarEstado
+};

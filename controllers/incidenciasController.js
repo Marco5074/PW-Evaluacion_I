@@ -3,6 +3,8 @@ const incidencias = [];
 //contador para asignar un id unico a cada incidencia
 let siguienteID = 1;
 
+const{validarPrioridad,campoVacio,normalizarEstado}= require('../utils/helper');
+
 //registro de incidencia
 function registrarIncidencia(req, res) {
     const { empleado, area, descripcion, prioridad } = req.body;
@@ -110,7 +112,7 @@ function eliminarIncidencia(req, res) {
 
 // estadisticas de las incidencias guardadas
 function obtenerEstadisticas(req, res) {
-    const normalizarEstado = (estado) => (estado || '').toLowerCase().replace(/\s+/g, '');
+
 
     res.json({
         totalIncidencias: incidencias.length,
@@ -139,7 +141,7 @@ function clasificarIncidencias(req, res) {
 
     }
 
-    switch (incidencia.prioridad) 
+    switch (incidencia.prioridad.toLowerCase()) 
     {
         case 'Alta':
             incidencia.estado = 'Crítica'
