@@ -254,6 +254,12 @@ http://localhost:3000/incidencias/1/clasificacion
   "clasificacion": "Crítica"
 }
 ```
+**Respuesta 404**
+```json
+{
+  "mensaje": "Incidencia no encontrada"
+}
+```
 ## Resumen de rutas
 | Método   | URL                              | Función                                      |
 | -------- | -------------------------------- | -------------------------------------------- |
@@ -265,10 +271,3 @@ http://localhost:3000/incidencias/1/clasificacion
 | `GET`    | `/estadisticas`                  | Ver estadísticas de las incidencias          |
 | `GET`    | `/incidencias/:id/clasificacion` | Clasificar una incidencia según su prioridad |
 
-
-**Respuesta 404**
-```json
-{
-  "mensaje": "Incidencia no encontrada"
-}
-```
