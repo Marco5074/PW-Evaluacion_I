@@ -1,9 +1,9 @@
 # PW-Evaluacion_I
 **Integrantes**
-Leila Saraí Campos Peraza 00141525
-Marcos Noe Vasquez Guardado 00114825
-Ulises Nahonri Martinez Martinez 00191323
-Gabriela Michelle Navas Quinteros 00167525
+Leila Saraí Campos Peraza 00141525<br>
+Marcos Noe Vasquez Guardado 00114825<br>
+Ulises Nahonri Martinez Martinez 00191323<br>
+Gabriela Michelle Navas Quinteros 00167525<br>
 
 ## POST `/incidencias`
 
