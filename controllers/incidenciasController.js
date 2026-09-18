@@ -72,22 +72,26 @@ function cambiarEstado(req, res) {
     }
 
     // valida el estado utilizando switch
-    switch (estado) {
-        case 'Pendiente':
+    switch (normalizarEstado(estado)) {
+        case 'pendiente':
             incidencia.estado = 'Pendiente';
             break;
 
-        case 'En proceso':
-            incidencia.estado = 'En proceso';
+        case 'enproceso':
+            incidencia.estado = 'En Proceso';
             break;
 
-        case 'Resuelta':
+        case 'resuelta':
             incidencia.estado = 'Resuelta';
+            break;
+        
+        case 'cancelada':
+            incidencia.estado = 'Cancelada';
             break;
 
         default:
             return res.status(400).json({
-                mensaje: 'el estado debe ser Pendiente, En proceso o Resuelta'
+                mensaje: 'el estado debe ser Pendiente, En Proceso, Resuelta o Cancelada'
             });
     }
 
@@ -123,51 +127,41 @@ function obtenerEstadisticas(req, res) {
     });
 }
 
-// Clasificar incidencias 
 function clasificarIncidencias(req, res) {
-
-    // Obtener id de la URL
     const id = Number(req.params.id);
-
-// Buscar la incidencia por su id
     const incidencia = incidencias.find(incidencia => incidencia.id === id);
 
-
-    //Valida que exista la incidencia
     if (!incidencia) {
         return res.status(404).json({
             mensaje: "Incidencia no encontrada"
         });
-
     }
 
-    switch (incidencia.prioridad.toLowerCase()) 
-    {
+    let clasificacion;
+    switch (incidencia.prioridad.toLowerCase()) {
         case 'alta':
-            incidencia.estado = 'Crítica'
+            clasificacion = 'Crítica';
             break;
 
-
         case 'media':
-            incidencia.estado = 'Importante'
+            clasificacion = 'Importante';
             break;
 
         case 'baja':
-            incidencia.estado = 'Normal'
+            clasificacion = 'Normal';
             break;
 
         default:
             return res.status(400).json({
-                mensaje: 'La prioridad debe ser : Alta , Media , Baja'
+                mensaje: 'La prioridad debe ser: Alta, Media, Baja'
             });
     }
 
-    //Enviar el resultado
     res.status(200).json({
         id: incidencia.id,
-        clasificacion: incidencia.estado
+        clasificacion
     });
-};
+}
 
 
 
