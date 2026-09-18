@@ -1,14 +1,26 @@
-
-//PrioridadValida 
-
 function validarPrioridad(prioridad)
 {
-    return ['alta' , 'media' , 'baja'].includes(prioridad.toLowerCase()); 
+    return typeof prioridad === 'string' &&
+           ['alta', 'media', 'baja'].includes(prioridad.toLowerCase());
 }
 
 function campoVacio(valor)
 {
-    return !valor || valor.trim() === ''; 
+    return typeof valor !== 'string' || valor.trim() === '';
 }
-//prueba
 
+//funcion de normalizar estado
+function normalizarEstado(estado)
+{
+    if (typeof estado !== 'string') {
+        return '';
+    }
+
+    return estado.toLowerCase().replace(/\s+/g, '');
+}
+
+module.exports = {
+    validarPrioridad,
+    campoVacio,
+    normalizarEstado
+};
